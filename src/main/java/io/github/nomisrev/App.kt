@@ -4,8 +4,9 @@ import com.pi4j.Pi4J
 import com.pi4j.exception.LifecycleException
 import com.pi4j.io.gpio.digital.*
 import sun.misc.Signal
+import kotlin.system.exitProcess
 
-fun main(args: Array<String>) {
+fun main() {
     val pi4j = Pi4J.newAutoContext()
     println("<-- The Pi4J DHT22 Kotlin Project -->")
 
@@ -15,10 +16,10 @@ fun main(args: Array<String>) {
         } catch (e: LifecycleException) {
             e.printStackTrace()
         }
-        System.exit(2)
+        exitProcess(2)
     }
 
-    val input = pi4j.create(
+    pi4j.create(
             DigitalInput.newConfigBuilder(pi4j)
                 .id("Data_In")
                 .name("Data_In")
